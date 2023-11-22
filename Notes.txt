@@ -1,0 +1,97 @@
+current version of angular is 17.0.0 (2023-11-08)
+
+First version of angular is Angular.js
+after that it names as Angular 2 and 2+......
+
+
+ng version => to check angular version.
+
+npm install -g@angular/cli@10.0.0   => this commands install angular version 10.
+
+====================================================================================================================
+
+File structure in angular
+
+package.json 
+
+=> Its very imp file. it inclused name of out aplication, in scripts json object commands are there to start the
+application to test the application to build the aplication like this.
+in dependancies json object angular versions are mentioned and version of every library we are using.
+
+In devdependancy json object angular version of all the library required for dev are metnioned.
+
+package-lock.json:
+
+This files has information like
+version of all the required dependancies.
+i.e suppose package.json file include version of "@angular/cli": "^17.0.3"
+than package-lock.json file stores version of all the libraries which @angular/cli uses.
+It stores internal dependancies of all packages.
+
+node_modules:
+It has actuall dependancies present in this folder.
+
+src folder
+app:
+This is a component
+
+assets:
+Images/videos are present here
+
+envirnaments:
+It has a file with envirnamet configuration like prod, dev
+
+Index.html:
+First file which load in application
+
+main.ts:
+It loads the index.html, it bootstraps/loads the angular appliation.
+
+angular.json:
+configuaration related to application.
+like which html file should load at first. by default it is index.html
+which js file should load at first.by default it is main.ts
+
+tsconfig.json:
+.ts file related configuaration is present here
+
+
+tsconfig.spec.json:
+configuration related to testing files are present here.
+
+=======================================================================================================================
+
+What is interpolation:
+
+To disply dynamic data/properties/funcations in html file from .ts file.
+My Title is {{title}}  => the title variable is present in .ts file. 
+
+In html file:
+<h1> {{getName()}}</h1>
+
+in .ts file
+getName()
+  {
+    return "This is my name";
+  }
+
+Above code works
+
+
+<h1> {{2+2}}</h1>   // output is 4  it works like javascript code. we can write loops and all.
+
+what we cannot do with interpolation:
+typoOf() function doesnt work.
+increment decrement and assignment operation wont work, 
+cannot use new keyword
+
+
+
+
+
+
+		
+
+
+
+
