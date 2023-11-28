@@ -85,6 +85,38 @@ typoOf() function doesnt work.
 increment decrement and assignment operation wont work, 
 cannot use new keyword
 
+=================================================================================
+
+Commands
+
+ng new project_name => generate new project
+
+ng generate component cmp_name or ng g c cmp_name  => generate new component
+
+ng g c folder1/cmp_name   => generate component in folder "folder1"
+
+ng serve => run the project
+
+ng build => generate the build of project which is used to deploy build
+
+ng g interface interface_name => generate the interface
+
+ng generate class class_name
+
+ng g m user_auth  => generate the module  (module is a folder which consists no. of components)
+
+ng generate service my_service  => generate service with name "my_service"
+
+
+
+
+
+
+
+
+
+
+
 
 
 

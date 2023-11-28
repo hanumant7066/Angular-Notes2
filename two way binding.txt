@@ -1,0 +1,34 @@
+two way binding
+
+html file
+
+<input type="text" #box [(ngModel)] = "name"/>  // using ngModel we can acheive two way binding.. name is a property in .ts file
+<br>
+{{name}}
+
+to work with ngModel we need to import from angular/forms
+
+
+app.module.ts file
+
+import { FormsModule} from '@angular/forms'
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ChildComponent
+  ],
+  imports: [
+    UserAuthModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+

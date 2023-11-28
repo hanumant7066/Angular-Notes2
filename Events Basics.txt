@@ -1,0 +1,26 @@
+<button (click)="getName('Hanumant')">CLick me</button>  // every event is written in () 
+
+
+
+<input #box type="text"  (keyup)="getData(box.value)" placeholder="event keyup">  // here #box is id of input box and on keyup event we are passing entered value in the input filed to the function getData
+
+<input #box type="text"  (blur)="getData(box.value)" placeholder="event keyup">  // it occures when mouse lost focus from input fox to other location
+
+<input #box type="text"  (mouseover)="getData(box.value)" placeholder="mouseover">
+
+<input #box type="text"  (mouseleave)="getData(box.value)" placeholder="mouseleave">
+
+
+In a single inputbox or anything two or more event works fine
+
+
+
+there is a file style.css -> here we can write global styling code. 
+
+
+==========================================================================================
+
+Property Binding:
+
+<input #box type="text"  (mouseleave)="getData(box.value)" placeholder="mouseleave" [disabled]=disable>
+

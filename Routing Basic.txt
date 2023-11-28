@@ -1,0 +1,123 @@
+Rounting Basic
+app.routing.module.ts 
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+
+const routes: Routes = [
+  {
+    path: 'about',
+    component: AboutComponent
+   },
+   {
+    path: '',
+    component: HomeComponent
+   },
+   {
+    path: 'user',
+    component: UserComponent
+   }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+==================================
+app.component.html
+
+<h1>Basic routing example</h1>
+
+<a routerLink="">Home</a>
+<br>
+<a routerLink="about">About</a>
+<br>
+<a routerLink="user">User</a>
+
+<router-outlet></router-outlet> // user works if clicked on user link
+
+==================================================================================================
+Dynamic routing
+=================================================================================================
+we have user component created in project:
+
+app.component.html
+
+<br><br>
+<h1>Dynamic routing example</h1>
+<br>
+<a routerLink="user/11">Amar</a>
+
+<br>
+<a routerLink="user/12">Sameer</a>
+
+<br>
+<a routerLink="user/13">Naine</a>
+<router-outlet></router-outlet>
+
+========================================
+
+user.component.ts
+
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.css'
+})
+export class UserComponent {
+
+  constructor(private route : ActivatedRoute) {}
+
+  ngOnInit(): void{
+    console.warn("user Id is:"+this.route.snapshot.paramMap.get("id")) // here we get id from route value
+  }
+
+}============================================
+
+app-routing.module.ts
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+import { NoPageFoundComponent } from './NoPageFound/NoPageFound.component';
+
+const routes: Routes = [
+  {
+    path: 'about',
+    component: AboutComponent
+   },
+   {
+    path: '',
+    component: HomeComponent
+   },
+   {
+    path: 'user/:id',
+    component: UserComponent
+   },
+   { 
+    path: '**',        // ** this is wildcard.. for any invalid url this component is display
+    component: NoPageFoundComponent  // we can write any user message
+   }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+============================================
+
+

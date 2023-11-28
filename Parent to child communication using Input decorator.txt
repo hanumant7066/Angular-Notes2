@@ -1,0 +1,22 @@
+Passing data from parent to child component
+
+suppo I have this child cmp header.
+
+Define receiving data in @Input() decorator. 
+
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.css'
+})
+export class HeaderComponent {
+  constructor() {}
+ @Input() item = 0;   // item is going to come from parent cmp if not than value will be 0 by default.
+  
+}
+
+from parent component just send item as a data like below
+
+<app-header [item]="data"></app-header>  // here data is a variable defined in app.component.ts file

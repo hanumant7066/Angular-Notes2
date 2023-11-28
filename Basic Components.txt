@@ -1,0 +1,41 @@
+what is component
+
+It is building blocks of specific functionality like Header, Footer, search, abover us, login, sign up
+
+by default there are 4 files in a component
+
+html file => to write html code
+css => for style
+spec.ts => to write testing logic
+.ts => to write component related logic.
+
+ng g c my_cmp => 
+after executing this cmd 4 files generated and modified 1 file app.module.ts
+app.module.ts   => here components gets registered.
+
+
+How to use component
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-header',      // use this tag in html file <app-header></app-header>  we can change this name
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.css'
+})
+export class HeaderComponent {
+
+}
+==========================================================
+
+Inline style Inline template:
+
+ng g c user-list --inline-style => 
+Here we can write styling code in styles arrays which is created in .ts file.
+THis command generates three files html spec and ts (No css file created in this cmp)
+If there will be very less styling then we can use this approach. 
+
+
+ng g c user-list --inline-template => 
+here also 3 files gets generated. (no html file created.)
+we can write html related code in .ts file under template object in .ts file

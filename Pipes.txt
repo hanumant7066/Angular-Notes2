@@ -1,0 +1,66 @@
+Pipes are used to format the data
+it is used on html file only.
+
+
+
+e.g 
+change the format of date
+string to case sensitive format
+currency fromat
+
+
+<h2>{{title | uppercase}}</h2>  // title gets displayed in upppecase on UI. title is a variable defined in .ts file.
+
+<h2>{{today | date}}</h2>   // only date gets displayed like 29 jun 2022.. previously it is like big object 29 jun 2022 12:00:00:11 GMT etc...
+
+in ts file
+title = "Hanumant"
+
+<h2>{{title | slice: 3 : 6}}</h2> //  output is uman i.e it print from index 3 to 6
+
+
+<h2>{{title | slice: 3 : 6 | uppercase}}</h2> //  output is uman i.e it print from index 3 to 6 and uppercase
+
+
+{{myobj | json}} => its json value directly printed on UI
+
+<h2> {{20 | currency: 'USD'}}   => oupt is $20
+
+
+=============================================================
+
+Making custom pipes
+
+we will try to make pipes which converts USD to INR 
+
+ng g pipes usdinr => two files created
+
+usd-inr.pipes.spec.ts
+usd-inr.pipes.ts
+
+
+this is .ts file
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'usdInr'
+})
+export class UsdInrPipe implements PipeTransform {
+
+  transform(value: number, ...args: unknown[]): unknown {
+    return value*70;
+  }
+
+}
+
+
+form html file 
+
+{{20 | usdInr}} => oupt 1400
+
+
+ 
+
+
+

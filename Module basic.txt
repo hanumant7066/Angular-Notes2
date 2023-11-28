@@ -1,0 +1,77 @@
+What is module:
+
+
+module is a complete feature like user authontication
+It has components like login, signup, forgate pass, is a components inside this module.
+
+
+by default module is app
+
+below file is app.module.ts
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent   // in this array declare components, services
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule  // in this imports array we can declar Modules
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+---------------------------------------------------------------------------------------------
+ng g module user-auth =>
+
+This command creates on folder/module and inside this there is one file created which is user-auth.module.ts
+which looks like this
+
+import { CommonModule } from '@angular/common';
+
+@NgModule({
+  declarations: [],  // register all the components created in this module i.e user-auth
+  imports: [
+    CommonModule     // register modules created in this module.
+  ]
+})
+export class UserAuthModule { }
+
+to use this module as we kn we need to register this module in app.module.ts file. (in imports array)
+
+support create on login cmp in user-auth module and try to use it in app.component.html file
+
+we need to do below thigs to do this
+
+1. ng g c user-auth/login => login component created in user-auth module
+2. register login cmp in declarations array in file user-auth.module.ts
+3. create export array and specify login cmp so that it is available to use globaly for all over the app
+
+your file looks like this user-auth.module.ts
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+
+@NgModule({
+  declarations: [
+    LoginComponent
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    LoginComponent
+  ]
+})
+export class UserAuthModule { }
+

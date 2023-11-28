@@ -1,0 +1,89 @@
+Directives:
+
+directives are classes which adds additional feature to element.
+
+<h1 *ngIf="true">Hello world</h1>
+*ngIf
+*ngFor
+*ngSwitc
+
+above are directive
+
+ng g directive redE1:  Command to generate custom directive
+redE1 directive gets created
+2 files created 1 updatesd
+created 
+red-e1.directive.spec.ts
+red-e1.directive.ts
+
+import { RedE1Directive } from './red-e1.directive'
+
+ declarations: [
+    AppComponent,
+    HeaderComponent,
+    ChildComponent,
+    UsdInrPipe,
+    RedE1Directive   // addded in app.module.ts file
+  ],
+
+=======================
+Intially file looks like red-e1.directive.ts
+
+import { Directive } from '@angular/core';
+
+@Directive({
+  selector: '[appRedE1]'
+})
+export class RedE1Directive {
+
+  constructor() { }
+
+}
+
+=========================================================
+We want to make a directive which makes our text red
+
+modify as below:
+
+import { Directive, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appRedE1]'
+})
+export class RedE1Directive {
+
+  constructor(e1: ElementRef) {
+    e1.nativeElement.style.color="red"
+   }
+
+}
+
+
+
+now use this ta appRedE1 to make element red as follows
+
+In app.component.html file
+
+<h1 appRedE1>Hello world</h1> // text is displyed in red in UI.
+
+
+
+// we can change any property of element using directive. here we have changed its style i.e color
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

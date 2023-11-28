@@ -1,0 +1,6 @@
+<h1 *ngIf="show">
+I will display if show variable is true
+</h1>
+
+
+<h1 *ngFor="let item of items">Item is : {{item}}</h1> 

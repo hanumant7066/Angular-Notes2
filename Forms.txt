@@ -1,0 +1,152 @@
+Template driven form:
+	Mostly work in html file
+Reactive form
+	Mostly work in component class
+
+
+Template driven form:
+
+form where form handling is done in template file. like validations, showing errors and all.
+
+example 
+
+<form #loginForm="ngForm" (ngSubmit)="userLogin(loginForm.value)">
+    <input type="text" placeholder="Enter name" name="name" ngModel><br><br>
+    <input type="password" placeholder="Enter password" name="password" ngModel><br><br>
+    <button>Login</button>
+</form>
+
+=> 
+
+on console entered value gets printed as an object. {name: 'aaa' passowrd: '123'}
+value is coming because i have written ngModel in input field.  It bind the value.
+name value is must for fileds. so that it is able to bind.
+
+
+
+=================================================================
+
+Reactive forms:
+
+in app.module.ts FormModule should be imported for both type of form
+
+here in component .ts file two more module needed to import
+i.e import { FormControl, FormGroup } from '@angular/forms'
+
+<form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+    <input type="text" placeholder="Enter name" name="user" formControlName="user"><br><br>
+    <input type="password" placeholder="Enter password" name="password" formControlName="password"><br><br>
+    <button>Login</button>
+
+</form>
+
+
+app.component.ts
+
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms'
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+
+  loginForm = new FormGroup(  // it controls the form. loginForm name should be same as in html file
+    {
+      user: new FormControl('Hanumant'),  // It controls the user field.. we can set defualt value in bracket 
+      password: new FormControl('')  // it controls the password filed.
+    }
+  )
+
+  userLogin()
+  {
+    console.warn(this.loginForm.value);
+  }
+
+
+}
+
+===========================================================================
+
+validation on Reactive form:
+consider above same code at first.
+
+<h1>Hello world</h1>
+
+<form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+    <input type="text" placeholder="Enter name" name="user" formControlName="user"><br>
+    <span style="color: red;" *ngIf="user && user.invalid && user.touched">This user is not valid</span>
+    <br><br>
+    <input type="password" placeholder="Enter password" name="password" formControlName="password"><br><br>
+    <button [disabled]="loginForm.invalid">Login</button>
+
+</form>
+
+
+<!-- <app-child (updateDataEvent)="updateData($event)"></app-child> -->
+
+
+app.compontnt.ts
+
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+
+  loginForm = new FormGroup(  // it controls the form. loginForm name should be same as in html file
+    {
+      user: new FormControl('', [Validators.required]),  // It controls the user field.. we can set defualt value in bracket 
+      password: new FormControl('')  // it controls the password filed.
+    }
+  )
+
+  userLogin()
+  {
+    console.warn(this.loginForm.value);
+  }
+  get user()
+  {
+    return this.loginForm.get('user')
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

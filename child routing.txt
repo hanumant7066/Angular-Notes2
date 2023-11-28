@@ -1,0 +1,83 @@
+Child Routing:
+
+pages inside pages is a child routes
+
+e.g 
+About is a page which can have a link for about me, about family, about company etc:
+
+
+app-routing.module.ts file
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+import { AboutCompanyComponent } from './about-company/about-company.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+
+const routes: Routes = [
+  {
+    path: 'about',
+    component: AboutComponent,
+    children: [                                      // here child routes defined for child links
+      {
+        path:'company', component: AboutCompanyComponent
+      },
+      {
+        path:'me', component: AboutMeComponent
+      },
+    ]
+   },
+   {
+    path: '',
+    component: HomeComponent
+   },
+   {
+    path: 'user/:id',
+    component: UserComponent
+   }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+====================================================================
+
+app.component.html
+
+
+<br><br>
+<h1>Dynamic routing example</h1>
+<br>
+<a routerLink="user/11">Amar</a>
+
+<br>
+<a routerLink="user/12">Sameer</a>
+
+<br>
+<a routerLink="user/13">Naina</a>
+
+<h1>Child routing example</h1>
+<br><br>
+<a routerLink="about">About</a>
+<br>
+<router-outlet></router-outlet>   <!--// here dynamic component appends on UI -->
+
+
+==================================================================================
+
+about.component.html
+
+<p>This is about component. it has two link about me, about company</p>
+<br>
+<a routerLink="company">About company</a>
+
+<br>
+<a routerLink="me">About me</a>
+
+<router-outlet></router-outlet> <!--// here dynamic component appends on UI -->
+
